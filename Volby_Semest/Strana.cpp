@@ -157,16 +157,28 @@ void Strana::zoradKandidatovAbecedne()
 {
 	CmpKandidatiAbecedne comparator;
 	kandidati_->sort(comparator);
+	for (auto kandidat : *kandidati_)
+	{
+		cout << " " << kandidat->getData()->dajMeno() << endl;
+	}
 }
 
 void Strana::zoradKandidatovOkresPref(Okres* okres)
 {
 	CmpKandidatiOkresPrefHlasy comparator(okres);
 	kandidati_->sort(comparator);
+	for (auto kandidat : *kandidati_)
+	{
+		cout << " " << kandidat->getData()->dajMeno() << endl;
+	}
 }
 
 void Strana::zoradKandidatovSKPref()
 {
 	CmpKandidatiSKPrefHlasy comparator;
 	kandidati_->sort(comparator);
+	for (auto kandidat : *kandidati_)
+	{
+		cout << " " << kandidat->getData()->dajMeno() << endl;
+	}
 }

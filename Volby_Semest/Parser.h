@@ -35,4 +35,5 @@ private:
 	std::vector<std::string>* prvkyRiadku_;
 	std::fstream subor_;
 	std::vector<std::string>* strany_;
+	std::vector<std::string>* kandidatiMena_;
 };

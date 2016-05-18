@@ -9,6 +9,8 @@ Parser::Parser(const string & nazovSuboru) :
 	strany_(new vector<string>()),
 	prvkyRiadku_(nullptr)
 {
+	kandidatiMena_->reserve(2914);
+	nacitajSuborPoRiadkoch(prelozCestu("zoznamkandidatov.txt"), kandidatiMena_);
 	nacitajSuborPoRiadkoch(prelozCestu("zoznamStran.txt"), strany_);
 	subor_.open(prelozCestu(nazovSuboru), std::fstream::in);
 }

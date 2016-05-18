@@ -109,6 +109,24 @@ void Aplikacia::nacitajPreferenceHlasy()
 {
 	Parser parser("VyslPrednHlasOkrskyCSV.csv");
 
+	//#####################################################################
+	std::vector<std::string> partyCandCounts;
+
+	partyCandCounts.reserve(23);
+	naci("poctyKandidatov.txt", &partyCandCounts);
+
+	int prevUpperBound(0);
+
+	for (auto i(0); i < partyCandCounts.size(); i++)
+	{
+		const int newUpperIndex(std::stoi(partyCandCounts[i]));
+
+		partyCandIndices_->insert(i,
+			new std::pair<int, int>(prevUpperBound, prevUpperBound + newUpperIndex - 1));
+		prevUpperBound += newUpperIndex;
+	}
+	//#####################################################################
+
 	for (auto item : *okrsky_)
 	{
 		parser.nacitajDalsiZaznam(',');
@@ -146,23 +164,23 @@ void Aplikacia::vypisHlavicku()
 
 void Aplikacia::vypisMenu()
 {
-
 	cout << "\n MENU >> " << endl;
 	cout << "[ 1 ] Vyhladanie politickej strany" << endl;
 	cout << "[ 2 ] Vyhladanie okresu " << endl;
 	cout << "[ 3 ] Zoradenie okrskou  " << endl;
 	cout << "[ 4 ] Zoradenie kandidatov " << endl;
-	cout << "[ 5 ] Koniec " << endl;
+	cout << "[ 5 ] Koniec \n   >>> ";
 }
 
 int Aplikacia::vyberZoradovanieOkres()
 {
+	system("cls");
 	cout << " Zoradenie okrskov " << endl;
 	cout << "-------------------------------" << endl;
 	cout << "[ 1 ] Podla poctu zapisanych volicov" << endl;
 	cout << "[ 2 ] Podla relativneho vysledku danej politickej strany" << endl;
 	cout << "[ 3 ] Podla absolutneho vysledku danej politickej strany" << endl;
-	cout << "[ 4 ] Podla poctu preferencnych hlasov" << endl;
+	cout << "[ 4 ] Podla poctu preferencnych hlasov\n   >>> ";
 	int volbaZoradovania;
 	cin >> volbaZoradovania;
 	celkovaVolba_ += volbaZoradovania;
@@ -171,11 +189,12 @@ int Aplikacia::vyberZoradovanieOkres()
 
 int Aplikacia::vypisKandidatovStrany()
 {
+	system("cls");
 	cout << " Zoradenie kandidatov" << endl;
 	cout << "-------------------------------" << endl;
 	cout << "[ 1 ] Podla abecedy" << endl;
 	cout << "[ 2 ] Podla poctu preferovanych hlasov v okrese" << endl;
-	cout << "[ 3 ] Podla poctu preferovanych hlasov na Slovensku" << endl;
+	cout << "[ 3 ] Podla poctu preferovanych hlasov na Slovensku\n   >>> ";
 	int volbaZoradovania;
 	cin >> volbaZoradovania;
 	celkovaVolba_ += volbaZoradovania;
@@ -184,11 +203,12 @@ int Aplikacia::vypisKandidatovStrany()
 
 int Aplikacia::vyberOkres()
 {
+	system("cls");
 	cout << "Okres" << endl;
 	cout << "-----" << endl;
 	cout << "[ 1 ] Vyhladanie okresu" << endl;
 	cout << "[ 2 ] Zoradenie okrskov daneho okresu" << endl;
-	cout << "[ 3 ] Zoradenie vsetkych okrskov" << endl;
+	cout << "[ 3 ] Zoradenie vsetkych okrskov\n   >>> ";
 	celkovaVolba_ += 1;
 	int volbaOkres;
 	cin >> volbaOkres;
@@ -197,11 +217,11 @@ int Aplikacia::vyberOkres()
 
 void Aplikacia::vypisPolitickaStrana()
 {
-	cout << endl;
+	system("cls");
 	cout << "Politicka strana" << endl;
 	cout << "----------------" << endl;
 	vypisZoznamPolStran();
-	cout << "Zadajte cislo politickej strany:" << endl;
+	cout << "Zadajte cislo politickej strany:\n   >>> ";
 	int cisloStrany;
 	cin >> cisloStrany;
 	if (cisloStrany > 0 && cisloStrany < 27)
@@ -219,6 +239,9 @@ void Aplikacia::vypisPolitickaStrana()
 
 void Aplikacia::vypisZoznamPolStran()
 {
+	system("cls");
+	cout << "Politicka strana" << endl;
+	cout << "----------------" << endl;
 	for (auto strana : *strany_)
 	{
 		cout << "       [ " << strana->getKey() << " ] " << strana->getData()->dajSkratku() << endl;
@@ -227,6 +250,7 @@ void Aplikacia::vypisZoznamPolStran()
 
 void Aplikacia::vyhladajOkres()
 {
+	system("cls");
 	cout << "Vyhladanie okresu" << endl;
 	cout << "------------------" << endl;
 	for (auto prvok : *okresy_)
@@ -274,8 +298,9 @@ int Aplikacia::spusti()
 
 void Aplikacia::volbaStranyAOkresu(int zorad)
 {
+	system("cls");
 	vypisZoznamPolStran();
-	cout << "Zadajte cislo politickej strany:" << endl;
+	cout << "Zadajte cislo politickej strany:\n   >>> ";
 	int cisloStrany;
 	cin >> cisloStrany;
 	Strana* strana((*strany_)[cisloStrany]);
@@ -283,8 +308,11 @@ void Aplikacia::volbaStranyAOkresu(int zorad)
 	if (zorad == 2)
 	{
 		string okres;
-
-		cout << "Vyberte Okres " << endl;
+		system("cls");
+		cout << "Vyhladanie okresu" << endl;
+		cout << "------------------" << endl;
+		for (auto prvok : *okresy_) cout << "	" << prvok->getData()->dajNazov() << endl;
+		cout << "Vyberte Okres: \n   >>> ";
 		cin >> okres;
 		//strana->zoradKandidatovOkresPref();
 	}
@@ -295,12 +323,15 @@ void Aplikacia::volbaStranyAOkresu(int zorad)
 
 void Aplikacia::volbaZoradeniaOkrsok(int zorad)
 {
+	system("cls");
+	cout << "Volba vyhladavania" << endl;
+	cout << "------------------" << endl;
 	cout << "[ 1 ] Vyhladanie bez okresu" << endl;
-	cout << "[ 2 ] Vyhladanie podla okresu" << endl;
+	cout << "[ 2 ] Vyhladanie podla okresu\n   >>> ";
 	int volba(0);
 	cin >> volba;
 	vypisZoznamPolStran();
-	cout << "Zadajte cislo politickej strany:" << endl;
+	cout << "Zadajte cislo politickej strany:\n   >>> ";
 	int cisloStrany;
 	cin >> cisloStrany;
 	Strana* strana((*strany_)[cisloStrany]);
@@ -315,6 +346,9 @@ void Aplikacia::volbaZoradeniaOkrsok(int zorad)
 	else
 	{
 		string okres;
+		system("cls");
+		cout << "Vyhladanie okresu" << endl;
+		cout << "------------------" << endl;
 		for (auto prvok : *okresy_) cout << "	" << prvok->getData()->dajNazov() << endl;
 		cout << "Vyberte Okres\n   >>>  ";
 		cin >> okres;
@@ -325,55 +359,7 @@ void Aplikacia::volbaZoradeniaOkrsok(int zorad)
 	}
 	cout << endl;
 }
- /*
-void Aplikacia::zoradPodlaVolicov()
-{
-	cout << "Zadajte okres:" << endl;
-	string okres;
-	cin >> okres;
-	(*okresy_)[okres]->zoradOkrskyZapVolici();
-	(*okresy_)[okres]->vypisOkrsky();
-}
 
-void Aplikacia::zoradPodlaRelVysl()
-{
-	cout << "Zadajte okres:" << endl;
-	string okres;
-	cin >> okres;
-	cout << "Zadajte cislo politickej strany:" << endl;
-	int cisloStrany;
-	cin >> cisloStrany;
-	Strana* strana((*strany_)[cisloStrany]);
-	(*okresy_)[okres]->zoradOkrskyStranaRelVysledok(strana);
-	//(*okresy_)[okres]->vypisOkrsky();
-}
-
-void Aplikacia::zoradPodlaAbsVysl()
-{
-	cout << "Zadajte okres:" << endl;
-	string okres;
-	cin >> okres;
-	cout << "Zadajte cislo politickej strany:" << endl;
-	int cisloStrany;
-	cin >> cisloStrany;
-	Strana* strana((*strany_)[cisloStrany]);
-	(*okresy_)[okres]->zoradOkrskyStranaAbsVysledok(strana);
-	//(*okresy_)[okres]->vypisOkrsky();
-}
-
-void Aplikacia::zoradPodlaPrefHlas()
-{
-	cout << "Zadajte okres:" << endl;
-	string okres;
-	cin >> okres;
-	cout << "Zadajte cislo politickej strany:" << endl;
-	int cisloStrany;
-	cin >> cisloStrany;
-	Strana* strana((*strany_)[cisloStrany]);
-	(*okresy_)[okres]->zoradOkrskyPrefHlasy(strana);
-	(*okresy_)[okres]->vypisOkrsky();
-}
- */
 void Aplikacia::zoradOkrskyZapVolici()
 {
 	CmpOkrskyZapVolici comparator;
