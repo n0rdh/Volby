@@ -8,14 +8,66 @@ CmpStrany::CmpStrany() :
 {
 }
 
-//Pre každý okrsok vypísané politické strany v poradí pod¾a ich relatívneho
-//volebného výsledku (teda ko¾ko percent platných hlasov strana získala) 
-//v tomto okrsku (tento volebný výsledok pre každú stranu aj uveïte).
 int CmpStrany::compare(const TableItem<Strana*, Vysledok*>& first,
 	const TableItem<Strana*, Vysledok*>& second) const
 {
 	return first.getData()->dajRelativnyVysledok() - second.getData()->dajRelativnyVysledok();
 }
+
+
+
+//####################################################################################################
+
+CmpKandidatiAbecedne::CmpKandidatiAbecedne() :
+	Comparator<int, Kandidat*>()
+{
+}
+
+int CmpKandidatiAbecedne::compare(const TableItem<int, Kandidat*>& first,
+	const TableItem<int, Kandidat*>& second) const
+{
+	return first.getData()->dajMeno().compare(second.getData()->dajMeno());
+}
+
+//####################################################################################################
+
+CmpKandidatiSKPrefHlasy::CmpKandidatiSKPrefHlasy() :
+	Comparator<int, Kandidat*>()
+{
+}
+
+int CmpKandidatiSKPrefHlasy::compare(const TableItem<int, Kandidat*>& first,
+	const TableItem<int, Kandidat*>& second) const
+{
+	return first.getData()->dajOkrsokMaxPrefHlasyPocet() -
+		second.getData()->dajOkrsokMaxPrefHlasyPocet();
+}
+
+//####################################################################################################
+
+CmpKandidatiOkresPrefHlasy::CmpKandidatiOkresPrefHlasy(Okres* okres) :
+	okres_(okres)
+{
+}
+
+int CmpKandidatiOkresPrefHlasy::compare(const DS::TableItem<int, Kandidat*>& first,
+	const DS::TableItem<int, Kandidat*>& second) const
+{
+	return 0;
+}
+
+//####################################################################################################
+
+
+
+
+
+
+
+//Pre každý okrsok vypísané politické strany v poradí pod¾a ich relatívneho
+//volebného výsledku (teda ko¾ko percent platných hlasov strana získala) 
+//v tomto okrsku (tento volebný výsledok pre každú stranu aj uveïte).
+
 
 CmpOkrskyZapVolici::CmpOkrskyZapVolici() :
 	Comparator<string, Okrsok*>()

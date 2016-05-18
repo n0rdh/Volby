@@ -2,6 +2,48 @@
 #include "Strana.h"
 #include "Vysledok.h"
 
+
+//####################################################################################################
+
+class CmpKandidatiAbecedne :
+	public DS::Comparator<int, Kandidat*>
+{
+public:
+	CmpKandidatiAbecedne();
+
+	virtual int compare(const DS::TableItem<int, Kandidat*>& first,
+		const DS::TableItem<int, Kandidat*>& second) const override;
+};
+
+
+//####################################################################################################
+
+class CmpKandidatiOkresPrefHlasy :
+	public DS::Comparator<int, Kandidat*>
+{
+public:
+	CmpKandidatiOkresPrefHlasy(Okres* okres);
+
+	virtual int compare(const DS::TableItem<int, Kandidat*>& first,
+		const DS::TableItem<int, Kandidat*>& second) const override;
+
+private:
+	Okres* okres_;
+};
+//####################################################################################################
+
+class CmpKandidatiSKPrefHlasy :
+	public DS::Comparator<int, Kandidat*>
+{
+public:
+	CmpKandidatiSKPrefHlasy();
+
+	virtual int compare(const DS::TableItem<int, Kandidat*>& first,
+		const DS::TableItem<int, Kandidat*>& second) const override;
+};
+
+//####################################################################################################
+
 class CmpStrany :
 	public DS::Comparator<Strana*, Vysledok*>
 {

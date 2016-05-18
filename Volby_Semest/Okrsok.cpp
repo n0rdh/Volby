@@ -86,8 +86,7 @@ void Okrsok::vypisStranyOkrskuZoradene()
 	for (auto strana: *strany_)
 	{
 		cout << "	" << strana->getKey()->dajSkratku() << "  >>  " <<
-		strana->getData()->dajRelativnyVysledok() << endl;
-		//strana->getKey()->vypisStatistiku();// << endl;
+		strana->getData()->dajRelativnyVysledok() << " %" << endl;
 	}
 	cout << " --------------------------------" << endl;
 }

@@ -2,6 +2,7 @@
 
 #include "Okres.h"
 #include "Okrsok.h"
+#include "Kandidat.h"
 #include "TableSorted.h"
 #include <string>
 
@@ -21,7 +22,12 @@ public:
 	void pridajHlasyOkrsok(Okrsok* okrsok, int pocet);
 	double dajCelkovyVysledok();
 	void vypisStatistiku();
+	void vypisKandidatov(int vypis);
 	const std::string& dajSkratku();
+
+	void zoradKandidatovAbecedne();
+	void zoradKandidatovOkresPref(Okres* okres);
+	void zoradKandidatovSKPref();
 
 private:
 	int hlasyStrany_;
@@ -30,6 +36,7 @@ private:
 
 	DS::TableSorted<Okres*, int*>* sucetVyslOkresu_;
 	DS::TableSorted<std::string, int*>* sucetVyslKraje_;
+	DS::SortableTable<int, Kandidat*>* kandidati_;
 
 	void najdiNajlepsiNajhorsiOkres(Okres*&  najlepsi, Okres*& najhorsi);
 	void najdiNajlepsiNajhorsiKraj(std::string&  najlepsi, std::string& najhorsi);

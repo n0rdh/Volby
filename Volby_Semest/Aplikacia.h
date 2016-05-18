@@ -28,9 +28,9 @@ private:
 	int celkovyPocetHlasov_;
 	int celkovaVolba_;
 
-	void volbaOkresuAVypis();
-	void tretiaMoznost();
-	void volbaZoradenia(int zorad);
+	void volbaStranyAOkresu(int zorad);
+	int  vypisKandidatovStrany();
+	void volbaZoradeniaOkrsok(int zorad);
 
 	void nacitajSubory();
 	void nacitajVysledkyPreOkrsky();
@@ -46,7 +46,7 @@ private:
 	void zoradPodlaRelVysl();
 	void zoradPodlaAbsVysl();
 	void zoradPodlaPrefHlas();
-
+					   
 	void vypisZoznamPolStran();
 	void poNacitani();
 	void vypisHlavicku();

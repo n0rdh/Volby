@@ -1,8 +1,8 @@
 ﻿  Aplikacia.cpp
 Aplikacia.cpp(23): warning C4800: 'DS::SortableTable<std::string,Okrsok *> *const ': forcing value to bool 'true' or 'false' (performance warning)
   Generating code
-  6 of 1099 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+  11 of 1227 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    22 functions had inline decision re-evaluated but remain unchanged
+    29 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Volby_Semest.vcxproj -> C:\Users\Tomáš\Desktop\School\GitHub\Volby\x64\Release\Volby_Semest.exe
