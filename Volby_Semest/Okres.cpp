@@ -88,24 +88,42 @@ void Okres::zoradOkrskyZapVolici()
 {
 	CmpOkrskyZapVolici comparator;
 	okrsky_->sort(comparator);
+	for (auto okrsok : *okrsky_) {
+		cout << "   " << okrsok->getData()->dajNazov() << "   >>>   " << okrsok->getData()->dajPocetZapVolici() <<endl;
+	}
 }
 
 void Okres::zoradOkrskyStranaRelVysledok(Strana * strana)
 {
-
 	CmpOkrskyStranaRelVysl comparator(strana);
 	okrsky_->sort(comparator);
+	for (auto okrsok : *okrsky_)
+	{
+		cout  << "   " << okrsok->getData()->dajNazov() << "   >>>   "
+			<< okrsok->getData()->dajStranaRelVysl(strana) << endl;;
+	}
 }
  
 void Okres::zoradOkrskyStranaAbsVysledok(Strana * strana)
 {
 	CmpOkrskyStranaAbsRes comparator(strana);
 	okrsky_->sort(comparator);
+	okrsky_->sort(comparator);
+	for (auto okrsok : *okrsky_)
+	{
+		cout << "   " << okrsok->getData()->dajNazov() << "   >>>   "
+			<< okrsok->getData()->dajStranaAbsVysl(strana) << endl;
+	}
 }
 
 void Okres::zoradOkrskyPrefHlasy(Strana * strana)
 {
 	CmpOkrskyStranaPrefHlasy comparator(strana);
 	okrsky_->sort(comparator);
+	for (auto okrsok : *okrsky_)
+	{
+		cout << "   " << okrsok->getData()->dajNazov() << "   >>>   "
+			<< okrsok->getData()->dajStranaPrefHlasy(strana) << endl;
+	}
 }
 

@@ -150,14 +150,14 @@ void Aplikacia::vypisMenu()
 	cout << "\n MENU >> " << endl;
 	cout << "[ 1 ] Vyhladanie politickej strany" << endl;
 	cout << "[ 2 ] Vyhladanie okresu " << endl;
-	cout << "[ 3 ] Zoradenie okrskou daneho okresu " << endl;
+	cout << "[ 3 ] Zoradenie okrskou  " << endl;
 	cout << "[ 4 ] Zoradenie kandidatov " << endl;
 	cout << "[ 5 ] Koniec " << endl;
 }
 
 int Aplikacia::vyberZoradovanieOkres()
 {
-	cout << " Zoradenie okrskov daneho okresu" << endl;
+	cout << " Zoradenie okrskov " << endl;
 	cout << "-------------------------------" << endl;
 	cout << "[ 1 ] Podla poctu zapisanych volicov" << endl;
 	cout << "[ 2 ] Podla relativneho vysledku danej politickej strany" << endl;
@@ -215,19 +215,7 @@ void Aplikacia::vypisPolitickaStrana()
 		cout << "Taka strana neexistuje" << endl;
 	}
 	cout << endl;
-}
-
-void Aplikacia::vypisOkrsky(Strana* strana, int zorad)
-{
-	cout << "Zoznam okrskov : " << endl;
-	for (auto okrsok : *okrsky_) {
-		cout << "     - " << okrsok->getData()->dajNazov() << " : ";
-		if (zorad == 1) cout << okrsok->getData()->dajPocetZapVolici() << endl;
-		if (zorad == 2) cout << okrsok->getData()->dajStranaRelVysl(strana) << endl;
-		if (zorad == 3) cout << okrsok->getData()->dajStranaAbsVysl(strana) << endl;
-		if (zorad == 4) cout << okrsok->getData()->dajStranaPrefHlasy(strana) << endl;
-	}
-}
+}		
 
 void Aplikacia::vypisZoznamPolStran()
 {
@@ -295,6 +283,7 @@ void Aplikacia::volbaStranyAOkresu(int zorad)
 	if (zorad == 2)
 	{
 		string okres;
+
 		cout << "Vyberte Okres " << endl;
 		cin >> okres;
 		//strana->zoradKandidatovOkresPref();
@@ -306,19 +295,37 @@ void Aplikacia::volbaStranyAOkresu(int zorad)
 
 void Aplikacia::volbaZoradeniaOkrsok(int zorad)
 {
+	cout << "[ 1 ] Vyhladanie bez okresu" << endl;
+	cout << "[ 2 ] Vyhladanie podla okresu" << endl;
+	int volba(0);
+	cin >> volba;
 	vypisZoznamPolStran();
 	cout << "Zadajte cislo politickej strany:" << endl;
 	int cisloStrany;
 	cin >> cisloStrany;
 	Strana* strana((*strany_)[cisloStrany]);
-	if (zorad == 1) zoradOkrskyZapVolici();
-	if (zorad == 2) zoradOkrskyStranaRelVysledok(strana);
-	if (zorad == 3) zoradOkrskyStranaAbsVysledok(strana);
-	if (zorad == 4)	zoradOkrskyPrefHlasy(strana);
-	vypisOkrsky(strana,zorad);
+	if (volba == 1)
+	{
+		cout << "   ";
+		if (zorad == 1) zoradOkrskyZapVolici();
+		if (zorad == 2) zoradOkrskyStranaRelVysledok(strana);
+		if (zorad == 3) zoradOkrskyStranaAbsVysledok(strana);
+		if (zorad == 4)	zoradOkrskyPrefHlasy(strana);
+	}
+	else
+	{
+		string okres;
+		for (auto prvok : *okresy_) cout << "	" << prvok->getData()->dajNazov() << endl;
+		cout << "Vyberte Okres\n   >>>  ";
+		cin >> okres;
+		if (zorad == 1) (*okresy_)[okres]->zoradOkrskyZapVolici();
+		if (zorad == 2) (*okresy_)[okres]->zoradOkrskyStranaRelVysledok(strana);
+		if (zorad == 3) (*okresy_)[okres]->zoradOkrskyStranaAbsVysledok(strana);
+		if (zorad == 4)	(*okresy_)[okres]->zoradOkrskyPrefHlasy(strana);
+	}
 	cout << endl;
 }
-
+ /*
 void Aplikacia::zoradPodlaVolicov()
 {
 	cout << "Zadajte okres:" << endl;
@@ -338,7 +345,7 @@ void Aplikacia::zoradPodlaRelVysl()
 	cin >> cisloStrany;
 	Strana* strana((*strany_)[cisloStrany]);
 	(*okresy_)[okres]->zoradOkrskyStranaRelVysledok(strana);
-	(*okresy_)[okres]->vypisOkrsky();
+	//(*okresy_)[okres]->vypisOkrsky();
 }
 
 void Aplikacia::zoradPodlaAbsVysl()
@@ -351,7 +358,7 @@ void Aplikacia::zoradPodlaAbsVysl()
 	cin >> cisloStrany;
 	Strana* strana((*strany_)[cisloStrany]);
 	(*okresy_)[okres]->zoradOkrskyStranaAbsVysledok(strana);
-	(*okresy_)[okres]->vypisOkrsky();
+	//(*okresy_)[okres]->vypisOkrsky();
 }
 
 void Aplikacia::zoradPodlaPrefHlas()
@@ -366,29 +373,49 @@ void Aplikacia::zoradPodlaPrefHlas()
 	(*okresy_)[okres]->zoradOkrskyPrefHlasy(strana);
 	(*okresy_)[okres]->vypisOkrsky();
 }
-
+ */
 void Aplikacia::zoradOkrskyZapVolici()
 {
 	CmpOkrskyZapVolici comparator;
 	okrsky_->sort(comparator);
+	for (auto okrsok : *okrsky_)
+	{
+		cout << "   " << okrsok->getData()->dajNazov() << "    >>>    "
+			<< okrsok->getData()->dajPocetZapVolici() << endl;
+	}
 }
 
 void Aplikacia::zoradOkrskyStranaRelVysledok(Strana * strana)
 {
 	CmpOkrskyStranaRelVysl comparator(strana);
 	okrsky_->sort(comparator);
+	for (auto okrsok : *okrsky_)
+	{
+		cout << "   " << okrsok->getData()->dajNazov() << "    >>>    "
+			<< okrsok->getData()->dajStranaRelVysl(strana) << endl;
+	}
 }
 
 void Aplikacia::zoradOkrskyStranaAbsVysledok(Strana * strana)
 {
 	CmpOkrskyStranaAbsRes comparator(strana);
 	okrsky_->sort(comparator);
+	for (auto okrsok : *okrsky_)
+	{
+		cout << "   " << okrsok->getData()->dajNazov() << "    >>>    "
+			<< okrsok->getData()->dajStranaAbsVysl(strana) << endl;
+	}
 }
 
 void Aplikacia::zoradOkrskyPrefHlasy(Strana * strana)
 {
 	CmpOkrskyStranaPrefHlasy comparator(strana);
 	okrsky_->sort(comparator);
+	for (auto okrsok : *okrsky_)
+	{
+		cout << "   " << okrsok->getData()->dajNazov() << "    >>>    "
+			<< okrsok->getData()->dajStranaPrefHlasy(strana) << endl;
+	}
 }
 
 
