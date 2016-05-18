@@ -163,11 +163,11 @@ void Aplikacia::vyhladajOkres()
 	{
 		cout << "	" <<  prvok->getData()->dajNazov() << endl;
 	}
-	cout << "Zadajte okres:" << endl;
+	cout << "Zadajte okres:\n   >>> ";
 	string okres;
+	//cin >> okres;
 	cin.ignore();
-	getline(cin, okres);												//   Ak zadan zly nazov...
-	cout << "Vypisanie statistiky o okrese " + okres << endl;
+	getline(cin, okres);										
 	(*okresy_)[okres]->vypisStatistiku();								//   Dorob vynimku
 }
 
@@ -247,7 +247,6 @@ void Aplikacia::poNacitani()
 	{
 		strana->getData()->vycisliCelkovyVysledok(celkovyPocetHlasov_);
 	}
-
 	for (auto okrsok : *okrsky_)
 	{
 		okrsok->getData()->vycisliRelativneVysledky();
@@ -277,8 +276,8 @@ void Aplikacia::vypisMenu()
 
 int Aplikacia::spusti()
 {
-	nacitajSubory();
 	vypisHlavicku();
+	nacitajSubory();
 	int volba;
 	while (true)
 	{

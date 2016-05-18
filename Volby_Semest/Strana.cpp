@@ -59,7 +59,6 @@ void Strana::pridajHlasyOkrsok(Okrsok* okrsok, int pocet)
 		sucetVyslOkresu_->insert(pomOkres, hlasy);
 	}
 	*hlasy += pocet;
-
 	const string& pomKraj(pomOkres->dajKraj());
 
 	if (!sucetVyslKraje_->tryFind(pomKraj, hlasy))
@@ -68,7 +67,6 @@ void Strana::pridajHlasyOkrsok(Okrsok* okrsok, int pocet)
 		sucetVyslKraje_->insert(pomKraj, hlasy);
 	}
 	*hlasy += pocet;
-
 	hlasyStrany_ += pocet;
 }
 

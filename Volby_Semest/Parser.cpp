@@ -69,7 +69,6 @@ bool Parser::nacitajDalsiZaznam(char oddelovac)
 	}
 
 	string riadok;
-
 	getline(subor_, riadok);
 	delete prvkyRiadku_;
 	prvkyRiadku_ = rozdelRiadokNaCasti(riadok, oddelovac);
@@ -118,7 +117,7 @@ void Parser::nacitajSuborPoRiadkoch(const string & nazovSuboru, vector<string>* 
 
 vector<string>* Parser::rozdelRiadokNaCasti(const string & retazec, char oddelovac) const
 {
-	vector<string>* prvky = new vector<string>();
+	vector<string>* prvky(new vector<string>());
 	stringstream strStream(retazec);
 	string prvok;
 	size_t poslednaPozOddelovaca(retazec.find_last_of(oddelovac));
