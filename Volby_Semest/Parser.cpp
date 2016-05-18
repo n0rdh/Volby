@@ -76,6 +76,11 @@ bool Parser::nacitajDalsiZaznam(char oddelovac)
 	return true;
 }
 
+std::vector<std::string>* Parser::dajPrvkyRiadku() const
+{
+	return prvkyRiadku_;
+}
+
 int Parser::prevedStrNaInt(const string & token)
 {
 	if (token.empty())
@@ -83,7 +88,7 @@ int Parser::prevedStrNaInt(const string & token)
 		return 0;
 	}
 
-	const size_t pozicia(token.find("\""));
+	const size_t pozicia(token.find('"'));
 	const char* str(token.c_str());
 	int vysledok;
 

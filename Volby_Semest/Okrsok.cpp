@@ -17,7 +17,7 @@ Okrsok::Okrsok(string nazov, Okres* okres) :
 Okrsok::Okrsok(const Okrsok & dalsi) :
 	pocetHlasovStran_(dalsi.pocetHlasovStran_),
 	pocetZapVolici_(dalsi.pocetZapVolici_),
-	strany_(new SortableTable<Strana*, Vysledok*>(dalsi.strany_)),
+	strany_(new SortableTable<Strana*, Vysledok*>(*dalsi.strany_)),
 	nazov_(dalsi.nazov_),
 	okres_(dalsi.okres_)
 {

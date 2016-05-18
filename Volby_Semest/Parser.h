@@ -25,6 +25,8 @@ public:
 
 	bool nacitajDalsiZaznam(char oddelovac);
 
+	std::vector<std::string>* dajPrvkyRiadku() const;
+
 private:
 	static int prevedStrNaInt(const std::string& token);
 	void nacitajSuborPoRiadkoch(const std::string& nazovSuboru, std::vector<std::string>* zoznam);

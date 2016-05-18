@@ -20,7 +20,7 @@ Aplikacia::Aplikacia() :
 Aplikacia::Aplikacia(const Aplikacia & dalsia) :
 	strany_(new TableSorted<int, Strana*>(*dalsia.strany_)),
 	okresy_(new TableSorted<string, Okres*>(*dalsia.okresy_)),
-	okrsky_(new SortableTable<string, Okrsok*>(dalsia.okrsky_)),
+	okrsky_(new SortableTable<string, Okrsok*>(*dalsia.okrsky_)),
 	celkovyPocetHlasov_(dalsia.celkovyPocetHlasov_),
 	celkovaVolba_(dalsia.celkovaVolba_)
 {
@@ -101,7 +101,7 @@ void Aplikacia::nacitajZapisanychVolicov()
 	for (auto item : *okrsky_)
 	{
 		parser.nacitajDalsiZaznam(';');
-		item->getData()->nastavPocetZapVolicov(parser.dajIntDataNaPozicii(1));
+		item->getData()->nastavPocetZapVolicov(parser.dajIntDataNaPozicii(2));
 	}
 }
 
