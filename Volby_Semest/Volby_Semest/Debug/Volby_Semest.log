@@ -1,3 +1,0 @@
-﻿  Aplikacia.cpp
-c:\users\tomáš\desktop\volby_semest\volby_semest\aplikacia.cpp(23): warning C4800: 'DS::SortableTable<std::string,Okrsok *> *const ': forcing value to bool 'true' or 'false' (performance warning)
-  Volby_Semest.vcxproj -> C:\Users\Tomáš\Desktop\Volby_Semest\Debug\Volby_Semest.exe
