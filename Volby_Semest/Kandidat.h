@@ -19,7 +19,7 @@ public:
 
 	void pridajOkrsokPrefHlasy(Okrsok* okrsok, int pocetHlasov);
 	int dajPreferencneHlasyPocet();
-	int dajPrefHlasyOkres(Okres * okres);
+	int dajPreferencneHlasyOkres(Okres * okres);
 	int dajMaxPocetHlasovOkrsok();
 	Okrsok * dajOkrsokMaxPrefHlasyPocet();
 	const string& dajMeno();

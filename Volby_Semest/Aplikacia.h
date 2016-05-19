@@ -42,6 +42,7 @@ private:
 	void vypisZoznamPolStran();
 	void vypisHlavicku();
 	void vypisMenu();
+	std::string vypis(std::string zaciatok, std::string koniec);
 
 	int  vyberOkres();
 	void vyhladajOkres();

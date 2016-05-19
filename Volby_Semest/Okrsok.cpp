@@ -1,6 +1,7 @@
 #include "Okrsok.h"
 #include "CmpStrany.h"
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 using namespace DS;
@@ -35,34 +36,34 @@ Okrsok & Okrsok::operator=(const Okrsok & dalsi)
 		delete strany_;
 		pocetHlasovStran_ = dalsi.pocetHlasovStran_;
 		pocetZapVolici_ = dalsi.pocetZapVolici_;
-		strany_ = new SortableTable<Strana*, Vysledok*>(*dalsi.strany_);
+		*strany_ = *dalsi.strany_;
 		nazov_ = dalsi.nazov_;
-		*okres_ = *dalsi.okres_;
+		okres_ = dalsi.okres_;
 	}
 	return *this;
 }
 
-void Okrsok::pridajPrefHlasy(Strana * strana, int pocHlasov)
+void Okrsok::pridajPreferencnychHlasy(Strana * strana, int pocHlasov)
 {
 	(*strany_)[strana]->pridajPrefHlasy(pocHlasov);
 }
 
-int Okrsok::dajPocetZapVolici()
+int Okrsok::dajPocetZapisanychVolicov()
 {
 	return pocetZapVolici_;
 }
 
-double Okrsok::dajStranaRelVysl(Strana * strana)
+double Okrsok::dajStranaRelativnehoVysl(Strana * strana)
 {
 	return (*strany_)[strana]->dajRelativnyVysledok();
 }
 
-int Okrsok::dajStranaAbsVysl(Strana * strana)
+int Okrsok::dajStranaAbsolutnyVysl(Strana * strana)
 {
 	return (*strany_)[strana]->dajAbsolutnyVysledok();
 }
 
-int Okrsok::dajStranaPrefHlasy(Strana * strana)
+int Okrsok::dajStranaPreferencneHlasy(Strana * strana)
 {
 	return (*strany_)[strana]->dajPrefHlasy();
 }
@@ -85,8 +86,9 @@ void Okrsok::vypisStranyOkrskuZoradene()
 	cout << "    Politicke strany   " << endl;
 	for (auto strana: *strany_)
 	{
-		cout << "	" << strana->getKey()->dajSkratku() << "  >>  " <<
-		strana->getData()->dajRelativnyVysledok() << " %" << endl;
+		//cout << "   " << left << setw(30) << "totojeprvastrana" << "121654" << endl;
+		cout << "	" << left << setw(52) << strana->getKey()->dajSkratku() 
+				<< strana->getData()->dajRelativnyVysledok() << " %" << endl;
 	}
 	cout << " --------------------------------" << endl;
 }
@@ -99,7 +101,7 @@ void Okrsok::vycisliRelativneVysledky()
 	}
 }
 
-void Okrsok::nastavAbsVyslStrany(Strana * strana, int pocetHlasov)
+void Okrsok::nastavAbsolutnyVyslStrany(Strana * strana, int pocetHlasov)
 {
 	pocetHlasovStran_ += pocetHlasov;
 	Vysledok* pomVys;
@@ -112,7 +114,7 @@ void Okrsok::nastavAbsVyslStrany(Strana * strana, int pocetHlasov)
 	pomVys->nastavAbsolutnyVysledok(pocetHlasov);
 }
 
-void Okrsok::nastavPocetZapVolicov(int pocetVolicov)
+void Okrsok::nastavPocetZapisanychVolicov(int pocetVolicov)
 {
 	pocetZapVolici_ = pocetVolicov;
 }

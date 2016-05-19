@@ -57,7 +57,7 @@ void Kandidat::pridajOkrsokPrefHlasy(Okrsok* okrsok, int pocetHlasov)
 	*hlasy += pocetHlasov;
 }
 
-int Kandidat::dajPrefHlasyOkres(Okres * okres)
+int Kandidat::dajPreferencneHlasyOkres(Okres * okres)
 {
 	return *(*okresHlasy_)[okres];
 }

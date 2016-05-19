@@ -16,19 +16,19 @@ public:
 	~Okrsok();
 	Okrsok& operator=(const Okrsok& dalsi);
 
-	int dajPocetZapVolici();
-	double dajStranaRelVysl(Strana* strana);
-	int dajStranaAbsVysl(Strana* strana);
-	int dajStranaPrefHlasy(Strana* strana);
+	int dajPocetZapisanychVolicov();
+	double dajStranaRelativnehoVysl(Strana* strana);
+	int dajStranaAbsolutnyVysl(Strana* strana);
+	int dajStranaPreferencneHlasy(Strana* strana);
 	std::string dajNazov();
 	Okres* dajOkres();
-	void vypisStranyOkrskuZoradene();
 
+	void vypisStranyOkrskuZoradene();
 	void vycisliRelativneVysledky();
 
-	void nastavAbsVyslStrany(Strana* strana, int pocetHlasov);
-	void nastavPocetZapVolicov(int pocetVolicov);
-	void pridajPrefHlasy(Strana* strana, int dalsi);
+	void nastavAbsolutnyVyslStrany(Strana* strana, int pocetHlasov);
+	void nastavPocetZapisanychVolicov(int pocetVolicov);
+	void pridajPreferencnychHlasy(Strana* strana, int dalsi);
 
 private:
 	DS::SortableTable<Strana*, Vysledok*>* strany_;

@@ -20,6 +20,7 @@ public:
 	void vypisStatistiku();
 	void vypisOkrskyAbecedne();
 	void vypisOkrsky();
+	std::string vypis(std::string zaciatok, std::string koniec);
 
 	void zoradOkrskyZapVolici();
 	void zoradOkrskyStranaRelVysledok(Strana* strana);

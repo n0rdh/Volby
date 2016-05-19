@@ -80,7 +80,6 @@ void Strana::pridajHlasyOkrsok(Okrsok* okrsok, int pocet)
 {
 	Okres* pomOkres(okrsok->dajOkres());
 	int* hlasy;
-
 	if (!sucetVyslOkresu_->tryFind(pomOkres, hlasy))
 	{
 		hlasy = new int(0);
@@ -108,17 +107,16 @@ void Strana::vypisStatistiku()
 	string najlepsiKraj;
 	string najhorsiKraj;
 	najdiNajlepsiNajhorsiKraj(najlepsiKraj, najhorsiKraj);
-
 	Okres* najlepsiOkres;
 	Okres* najhorsiOkres;
 	najdiNajlepsiNajhorsiOkres(najlepsiOkres,najhorsiOkres);
 
 	cout << " Statistika :" << endl;
 	cout << "    Celkovy volebny vysledok : " << setprecision(3) << celkovyVysledok_ << " %" << endl;
-	cout << "    Najlepsi okres : " << najlepsiOkres->dajNazov() << setw(5) << *(*sucetVyslOkresu_)[najlepsiOkres] << endl;
-	cout << "    Najhorsi okres : " << najhorsiOkres->dajNazov() << setw(5) << *(*sucetVyslOkresu_)[najhorsiOkres] << endl;
-	cout << "    Najlepsi kraj : " << najlepsiKraj << setw(5) << *(*sucetVyslKraje_)[najlepsiKraj] << endl;
-	cout << "    Najhorsi kraj: " << najhorsiKraj << setw(5) << *(*sucetVyslKraje_)[najhorsiKraj] << endl;
+	cout << "    Najlepsi okres : " << najlepsiOkres->dajNazov() << "  " << *(*sucetVyslOkresu_)[najlepsiOkres] << endl;
+	cout << "    Najhorsi okres : " << najhorsiOkres->dajNazov() << "  " << *(*sucetVyslOkresu_)[najhorsiOkres] << endl;
+	cout << "    Najlepsi kraj  : " << najlepsiKraj << "  " << *(*sucetVyslKraje_)[najlepsiKraj] << endl;
+	cout << "    Najhorsi kraj  : " << najhorsiKraj << "  " << *(*sucetVyslKraje_)[najhorsiKraj] << endl;
 }
 
 void Strana::vypisKandidatov(int vypis)
@@ -190,11 +188,12 @@ void Strana::zoradKandidatovAbecedne()
 {
 	CmpKandidatiAbecedne comparator;
 	kandidati_->sort(comparator);
+	string pom;
 	for (auto kandidat : *kandidati_)
 	{
-		cout << " " << kandidat->getData()->dajMeno();
-		cout << setw(20) << kandidat->getData()->dajOkrsokMaxPrefHlasyPocet()->dajNazov();
-		cout << setw(25) << kandidat->getData()->dajMaxPocetHlasovOkrsok() << endl;
+		pom = vypis(kandidat->getData()->dajMeno(), kandidat->getData()->dajOkrsokMaxPrefHlasyPocet()->dajNazov());
+		
+		cout << left << setw(60) << pom << kandidat->getData()->dajMaxPocetHlasovOkrsok() <<  endl;
 	}
 }
 
@@ -204,8 +203,7 @@ void Strana::zoradKandidatovOkresPref(Okres* okres)
 	kandidati_->sort(comparator);
 	for (auto kandidat : *kandidati_)
 	{
-		cout << " " << kandidat->getData()->dajMeno();
-		cout << setw(20) << kandidat->getData()->dajPrefHlasyOkres(okres) << endl;
+		cout << vypis(kandidat->getData()->dajMeno(), to_string(kandidat->getData()->dajPreferencneHlasyOkres(okres))) << endl;
 	}
 }
 
@@ -215,8 +213,7 @@ void Strana::zoradKandidatovSKPref()
 	kandidati_->sort(comparator);
 	for (auto kandidat : *kandidati_)
 	{
-		cout << " " << kandidat->getData()->dajMeno(); 
-		cout << setw(20) << kandidat->getData()->dajPreferencneHlasyPocet() << endl;
+		cout << vypis(kandidat->getData()->dajMeno(), to_string(kandidat->getData()->dajPreferencneHlasyPocet())) << endl;
 	}
 }
 
@@ -226,4 +223,16 @@ void Strana::prelej()
 	{
 		kandidati_->insert(prvokKandidat->getKey(), prvokKandidat->getData());
 	}
+}
+
+std::string Strana::vypis(std::string zaciatok, std::string koniec)
+{
+	string vypis = "  ";
+	vypis += zaciatok;
+	for (int i(0); i < (22 - zaciatok.length()); i++)
+	{
+		vypis += " ";
+	}
+	vypis += koniec;
+	return vypis;
 }

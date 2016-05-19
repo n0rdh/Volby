@@ -24,6 +24,7 @@ public:
 	void vycisliCelkovyVysledok(int pocetVsetkychHlasov);
 	void vypisStatistiku();
 	void vypisKandidatov(int vypis);
+	std::string vypis(std::string zaciatok, std::string koniec);
 
 	const std::string& dajSkratku();
 	int dajZaciatokKandidati();

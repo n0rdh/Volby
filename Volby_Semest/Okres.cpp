@@ -17,7 +17,7 @@ Okres::Okres(const string & obvod, const string & kraj, const string nazov) :
 Okres::Okres(const Okres & dalsi) :
 	volebnyObvod_(dalsi.volebnyObvod_),
 	kraj_(dalsi.kraj_),
-	okrsky_(new SortableTable<string, Okrsok*>(*dalsi.okrsky_)), // toto kontroluj
+	okrsky_(new SortableTable<string, Okrsok*>(*dalsi.okrsky_)),
 	nazov_(dalsi.nazov_)
 {
 }
@@ -40,10 +40,9 @@ const string & Okres::dajNazov()
 Okres & Okres::operator=(const Okres & dalsi)
 {
 	if (this != &dalsi) {
-		delete okrsky_;
 		volebnyObvod_ = dalsi.volebnyObvod_;
 		kraj_ = dalsi.kraj_;
-		okrsky_ = dalsi.okrsky_;
+		*okrsky_ = *dalsi.okrsky_;
 		nazov_ = dalsi.nazov_;
 	} 
 	return *this;
@@ -61,14 +60,12 @@ void Okres::vypisStatistiku()
 	cout << "	Prislusnost do volebneho obvodu: " << volebnyObvod_ << endl;
 	cout << "	Prislusnost do kraja : " << kraj_ << endl;
 	vypisOkrskyAbecedne();
-	// TODO politicke strany podla rel vol vysledku
 }
 
 void Okres::vypisOkrskyAbecedne()
 {
 	CmpOkrskyOkres comparator;
 	okrsky_->sort(comparator);
-
 	cout << "	Zoznam okrskov : " << endl;
 	for (auto okrsok : *okrsky_) {
 		cout << " " << okrsok->getData()->dajNazov() << endl;
@@ -89,7 +86,7 @@ void Okres::zoradOkrskyZapVolici()
 	CmpOkrskyZapVolici comparator;
 	okrsky_->sort(comparator);
 	for (auto okrsok : *okrsky_) {
-		cout << "   " << okrsok->getData()->dajNazov() << "   >>>   " << okrsok->getData()->dajPocetZapVolici() <<endl;
+		cout << vypis(okrsok->getData()->dajNazov(), to_string(okrsok->getData()->dajPocetZapisanychVolicov())) << endl;
 	}
 }
 
@@ -99,8 +96,7 @@ void Okres::zoradOkrskyStranaRelVysledok(Strana * strana)
 	okrsky_->sort(comparator);
 	for (auto okrsok : *okrsky_)
 	{
-		cout  << "   " << okrsok->getData()->dajNazov() << "   >>>   "
-			<< okrsok->getData()->dajStranaRelVysl(strana) << endl;;
+		cout << vypis(okrsok->getData()->dajNazov(), to_string(okrsok->getData()->dajStranaRelativnehoVysl(strana))) << endl;
 	}
 }
  
@@ -111,8 +107,7 @@ void Okres::zoradOkrskyStranaAbsVysledok(Strana * strana)
 	okrsky_->sort(comparator);
 	for (auto okrsok : *okrsky_)
 	{
-		cout << "   " << okrsok->getData()->dajNazov() << "   >>>   "
-			<< okrsok->getData()->dajStranaAbsVysl(strana) << endl;
+		cout << vypis(okrsok->getData()->dajNazov(), to_string(okrsok->getData()->dajStranaAbsolutnyVysl(strana))) << endl;
 	}
 }
 
@@ -122,8 +117,19 @@ void Okres::zoradOkrskyPrefHlasy(Strana * strana)
 	okrsky_->sort(comparator);
 	for (auto okrsok : *okrsky_)
 	{
-		cout << "   " << okrsok->getData()->dajNazov() << "   >>>   "
-			<< okrsok->getData()->dajStranaPrefHlasy(strana) << endl;
+		cout << vypis(okrsok->getData()->dajNazov(), to_string(okrsok->getData()->dajStranaPreferencneHlasy(strana))) << endl;
 	}
+}
+
+std::string Okres::vypis(std::string zaciatok, std::string koniec)
+{
+	string vypis;
+	vypis += zaciatok;
+	for (int i(0); i < (40 - zaciatok.length()); i++)
+	{
+		vypis += " ";
+	}
+	vypis += koniec;
+	return vypis;
 }
 

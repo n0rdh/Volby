@@ -53,7 +53,7 @@ CmpKandidatiOkresPrefHlasy::CmpKandidatiOkresPrefHlasy(Okres* okres) :
 int CmpKandidatiOkresPrefHlasy::compare(const DS::TableItem<int, Kandidat*>& first,
 	const DS::TableItem<int, Kandidat*>& second) const
 {
-	return first.getData()->dajPrefHlasyOkres(okres_) - second.getData()->dajPrefHlasyOkres(okres_);
+	return first.getData()->dajPreferencneHlasyOkres(okres_) - second.getData()->dajPreferencneHlasyOkres(okres_);
 }
 
 //####################################################################################################
@@ -77,7 +77,7 @@ CmpOkrskyZapVolici::CmpOkrskyZapVolici() :
 int CmpOkrskyZapVolici::compare(const DS::TableItem<string, Okrsok*>& first,
 	const DS::TableItem<string, Okrsok*>& second) const
 {
-	return first.getData()->dajPocetZapVolici() - second.getData()->dajPocetZapVolici();
+	return first.getData()->dajPocetZapisanychVolicov() - second.getData()->dajPocetZapisanychVolicov();
 }
 
 CmpOkrskyStranaRelVysl::CmpOkrskyStranaRelVysl(Strana * strana) :
@@ -88,7 +88,7 @@ CmpOkrskyStranaRelVysl::CmpOkrskyStranaRelVysl(Strana * strana) :
 
 int CmpOkrskyStranaRelVysl::compare(const DS::TableItem<string, Okrsok*>& first, const DS::TableItem<string, Okrsok*>& second) const
 {
-	const double rozdiel(first.getData()->dajStranaRelVysl(strana_) - second.getData()->dajStranaRelVysl(strana_));
+	const double rozdiel(first.getData()->dajStranaRelativnehoVysl(strana_) - second.getData()->dajStranaRelativnehoVysl(strana_));
 	if (rozdiel > 0.0)
 	{
 		return 1;
@@ -112,7 +112,7 @@ CmpOkrskyStranaAbsRes::CmpOkrskyStranaAbsRes(Strana * strana) :
 int CmpOkrskyStranaAbsRes::compare(const DS::TableItem<string, Okrsok*>& first,
 	const DS::TableItem<string, Okrsok*>& second) const
 {
-	return first.getData()->dajStranaAbsVysl(strana_) - second.getData()->dajStranaAbsVysl(strana_);
+	return first.getData()->dajStranaAbsolutnyVysl(strana_) - second.getData()->dajStranaAbsolutnyVysl(strana_);
 }
 
 CmpOkrskyStranaPrefHlasy::CmpOkrskyStranaPrefHlasy(Strana * strana) :
@@ -123,5 +123,5 @@ CmpOkrskyStranaPrefHlasy::CmpOkrskyStranaPrefHlasy(Strana * strana) :
 
 int CmpOkrskyStranaPrefHlasy::compare(const DS::TableItem<string, Okrsok*>& first, const DS::TableItem<string, Okrsok*>& second) const
 {
-	return first.getData()->dajStranaPrefHlasy(strana_) - second.getData()->dajStranaPrefHlasy(strana_);
+	return first.getData()->dajStranaPreferencneHlasy(strana_) - second.getData()->dajStranaPreferencneHlasy(strana_);
 }
