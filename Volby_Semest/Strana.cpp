@@ -110,7 +110,6 @@ void Strana::vypisStatistiku()
 	Okres* najlepsiOkres;
 	Okres* najhorsiOkres;
 	najdiNajlepsiNajhorsiOkres(najlepsiOkres,najhorsiOkres);
-
 	cout << " Statistika :" << endl;
 	cout << "    Celkovy volebny vysledok : " << setprecision(3) << celkovyVysledok_ << " %" << endl;
 	cout << "    Najlepsi okres : " << najlepsiOkres->dajNazov() << "  " << *(*sucetVyslOkresu_)[najlepsiOkres] << endl;

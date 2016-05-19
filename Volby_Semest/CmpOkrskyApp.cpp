@@ -8,7 +8,6 @@ CmpOkrskyApp::CmpOkrskyApp() :
 {
 }
 
-//  Abecedný výpis všetkých okrskov v danom okrese.
 int CmpOkrskyApp::compare(const TableItem<string, Okrsok*>& first,
 	const TableItem<string, Okrsok*>& second) const
 {

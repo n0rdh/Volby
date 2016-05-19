@@ -86,7 +86,6 @@ void Okrsok::vypisStranyOkrskuZoradene()
 	cout << "    Politicke strany   " << endl;
 	for (auto strana: *strany_)
 	{
-		//cout << "   " << left << setw(30) << "totojeprvastrana" << "121654" << endl;
 		cout << "	" << left << setw(52) << strana->getKey()->dajSkratku() 
 				<< strana->getData()->dajRelativnyVysledok() << " %" << endl;
 	}

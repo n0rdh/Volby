@@ -11,10 +11,20 @@ CmpStrany::CmpStrany() :
 int CmpStrany::compare(const TableItem<Strana*, Vysledok*>& first,
 	const TableItem<Strana*, Vysledok*>& second) const
 {
-	return first.getData()->dajRelativnyVysledok() - second.getData()->dajRelativnyVysledok();
+	const double rozdiel(first.getData()->dajRelativnyVysledok() - second.getData()->dajRelativnyVysledok());
+	if (rozdiel > 0.0)
+	{
+		return 1;
+	}
+	else if (rozdiel < 0.0)
+	{
+		return -1;
+	}
+	else
+	{
+		return 0;
+	}
 }
-
-
 
 //####################################################################################################
 
@@ -57,16 +67,6 @@ int CmpKandidatiOkresPrefHlasy::compare(const DS::TableItem<int, Kandidat*>& fir
 }
 
 //####################################################################################################
-
-
-
-
-
-
-
-//Pre každý okrsok vypísané politické strany v poradí pod¾a ich relatívneho
-//volebného výsledku (teda ko¾ko percent platných hlasov strana získala) 
-//v tomto okrsku (tento volebný výsledok pre každú stranu aj uveïte).
 
 
 CmpOkrskyZapVolici::CmpOkrskyZapVolici() :

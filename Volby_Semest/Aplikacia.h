@@ -37,7 +37,7 @@ private:
 	void nacitajPreferenceHlasy();
 	void poNacitani();
 
-	int  vypisKandidatovStrany();
+	int  zoradenieKandidatovStrany();
 	void vypisPolitickaStrana();
 	void vypisZoznamPolStran();
 	void vypisHlavicku();

@@ -50,12 +50,12 @@ Aplikacia::~Aplikacia()
 
 void Aplikacia::nacitajSubory()
 {
-	cout << "Nacitavanie vysledkov pre okrsky...";
+	cout << "Nacitavanie vysledkov pre okrsky";
 	nacitajVysledkyPreOkrsky();
 	cout << endl;
-	cout << "Nacitavanie vysledkov o zapisanych volicoch..." << endl;
+	cout << "Nacitavanie vysledkov o zapisanych volicoch" << endl;
 	nacitajZapisanychVolicov();
-	cout << "Nacitanie vysledkov pre kandidatov..." << endl;
+	cout << "Nacitavam vysledky o preferencnych hlasoch" << endl;
 	nacitajPreferenceHlasy();
 	poNacitani();
 }
@@ -88,7 +88,7 @@ void Aplikacia::nacitajVysledkyPreOkrsky()
 		{ 2744, 2892 }
 	};
 
-	Parser parser("VyslPSOkrskySemColSep.txt");
+	Parser parser("VyslOkrsky.txt");
 	Okrsok* okrsok;
 	Okres* okres;
 	double percenta(0.0), riadok(0.0);
@@ -130,7 +130,7 @@ void Aplikacia::nacitajVysledkyPreOkrsky()
 
 void Aplikacia::nacitajZapisanychVolicov()
 {
-	Parser parser("ZapVoliciOkrskySemColSep.txt");
+	Parser parser("ZapVolici.txt");
 	double percenta(0.0), riadok(0.0);
 	for (auto item : *okrsky_)
 	{
@@ -144,7 +144,7 @@ void Aplikacia::nacitajZapisanychVolicov()
 
 void Aplikacia::nacitajPreferenceHlasy()
 {
-	Parser parser("VyslPrednHlasOkrskyCSV.csv");
+	Parser parser("VyslPrednHlasOkr.csv");
 	double percenta(0.0), riadok(0.0);
 	for (auto prvokOkrsky : *okrsky_)
 	{
@@ -219,14 +219,14 @@ int Aplikacia::vyberZoradovanieOkres()
 	return volbaZoradovania;
 }
 
-int Aplikacia::vypisKandidatovStrany()
+int Aplikacia::zoradenieKandidatovStrany()
 {
 	system("cls");
 	cout << " Zoradenie kandidatov" << endl;
 	cout << "-------------------------------" << endl;
 	cout << "[ 1 ] Podla abecedy" << endl;
-	cout << "[ 2 ] Podla poctu preferovanych hlasov v okrese" << endl;
-	cout << "[ 3 ] Podla poctu preferovanych hlasov na Slovensku\n   >>> ";
+	cout << "[ 2 ] Podla poctu preferencnych hlasov v okrese" << endl;
+	cout << "[ 3 ] Podla poctu preferencnych hlasov na Slovensku\n   >>> ";
 	int volbaZoradovania;
 	cin >> volbaZoradovania;
 	celkovaVolba_ += volbaZoradovania;
@@ -318,7 +318,7 @@ int Aplikacia::spusti()
 			volbaZoradeniaOkrsok(vyberZoradovanieOkres());
 			break;
 		case 4:
-			volbaStranyAOkresu(vypisKandidatovStrany());
+			volbaStranyAOkresu(zoradenieKandidatovStrany());
 			break;
 		case 5:
 			return 0;
@@ -415,7 +415,6 @@ void Aplikacia::zoradOkrskyStranaRelVysledok(Strana * strana)
 	{
 		double pom = okrsok->getData()->dajStranaRelativnehoVysl(strana);
 		relativny = to_string(pom);
-		relativny.substr(0, 5);
 		cout << vypis(okrsok->getData()->dajNazov(), (pom < 10) ? relativny.substr(0, 4) : relativny.substr(0, 5)) << " %" << endl;
 	}
 }
