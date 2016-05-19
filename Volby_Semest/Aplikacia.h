@@ -29,30 +29,24 @@ private:
 	int celkovaVolba_;
 
 	void volbaStranyAOkresu(int zorad);
-	int  vypisKandidatovStrany();
 	void volbaZoradeniaOkrsok(int zorad);
 
 	void nacitajSubory();
 	void nacitajVysledkyPreOkrsky();
 	void nacitajZapisanychVolicov();
 	void nacitajPreferenceHlasy();
-
-	void vypisPolitickaStrana();
-	int  vyberOkres();
-	void vyhladajOkres();
-	int  vyberZoradovanieOkres();
-
-	void zoradPodlaVolicov();
-	void zoradPodlaRelVysl();
-	void zoradPodlaAbsVysl();
-	void zoradPodlaPrefHlas();
-					   
-	void vypisZoznamPolStran();
 	void poNacitani();
+
+	int  vypisKandidatovStrany();
+	void vypisPolitickaStrana();
+	void vypisZoznamPolStran();
 	void vypisHlavicku();
 	void vypisMenu();
 
-	void vypisOkrsky(Strana* strana, int zorad);
+	int  vyberOkres();
+	void vyhladajOkres();
+	int  vyberZoradovanieOkres();
+					   
 	void zoradOkrskyZapVolici();
 	void zoradOkrskyStranaRelVysledok(Strana * strana);
 	void zoradOkrskyStranaAbsVysledok(Strana * strana);

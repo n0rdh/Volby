@@ -7,9 +7,9 @@ using namespace std;
 
 Parser::Parser(const string & nazovSuboru) :
 	strany_(new vector<string>()),
+	kandidatiMena_(new vector<string>()),
 	prvkyRiadku_(nullptr)
 {
-	kandidatiMena_->reserve(2914);
 	nacitajSuborPoRiadkoch(prelozCestu("zoznamkandidatov.txt"), kandidatiMena_);
 	nacitajSuborPoRiadkoch(prelozCestu("zoznamStran.txt"), strany_);
 	subor_.open(prelozCestu(nazovSuboru), std::fstream::in);
@@ -78,6 +78,11 @@ bool Parser::nacitajDalsiZaznam(char oddelovac)
 	return true;
 }
 
+string Parser::dajMenoKandidata(int index)
+{
+	return (*kandidatiMena_)[index];
+}
+
 std::vector<std::string>* Parser::dajPrvkyRiadku() const
 {
 	return prvkyRiadku_;
@@ -144,6 +149,5 @@ vector<string>* Parser::rozdelRiadokNaCasti(const string & retazec, char oddelov
 	{
 		prvky->push_back("");
 	}
-
 	return prvky;
 }

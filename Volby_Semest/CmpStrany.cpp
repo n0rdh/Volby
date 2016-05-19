@@ -39,8 +39,8 @@ CmpKandidatiSKPrefHlasy::CmpKandidatiSKPrefHlasy() :
 int CmpKandidatiSKPrefHlasy::compare(const TableItem<int, Kandidat*>& first,
 	const TableItem<int, Kandidat*>& second) const
 {
-	return first.getData()->dajOkrsokMaxPrefHlasyPocet() -
-		second.getData()->dajOkrsokMaxPrefHlasyPocet();
+	return first.getData()->dajPreferencneHlasyPocet() -
+		second.getData()->dajPreferencneHlasyPocet();
 }
 
 //####################################################################################################
@@ -53,7 +53,7 @@ CmpKandidatiOkresPrefHlasy::CmpKandidatiOkresPrefHlasy(Okres* okres) :
 int CmpKandidatiOkresPrefHlasy::compare(const DS::TableItem<int, Kandidat*>& first,
 	const DS::TableItem<int, Kandidat*>& second) const
 {
-	return 0;
+	return first.getData()->dajPrefHlasyOkres(okres_) - second.getData()->dajPrefHlasyOkres(okres_);
 }
 
 //####################################################################################################
@@ -88,7 +88,19 @@ CmpOkrskyStranaRelVysl::CmpOkrskyStranaRelVysl(Strana * strana) :
 
 int CmpOkrskyStranaRelVysl::compare(const DS::TableItem<string, Okrsok*>& first, const DS::TableItem<string, Okrsok*>& second) const
 {
-	return first.getData()->dajStranaRelVysl(strana_) - second.getData()->dajStranaRelVysl(strana_);
+	const double rozdiel(first.getData()->dajStranaRelVysl(strana_) - second.getData()->dajStranaRelVysl(strana_));
+	if (rozdiel > 0.0)
+	{
+		return 1;
+	}
+	else if (rozdiel < 0.0)
+	{
+		return -1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 CmpOkrskyStranaAbsRes::CmpOkrskyStranaAbsRes(Strana * strana) :

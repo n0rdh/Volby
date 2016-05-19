@@ -18,8 +18,9 @@ public:
 	Kandidat& operator=(const Kandidat& dalsi);
 
 	void pridajOkrsokPrefHlasy(Okrsok* okrsok, int pocetHlasov);
-	int dajPrefHlasyPocet();
+	int dajPreferencneHlasyPocet();
 	int dajPrefHlasyOkres(Okres * okres);
+	int dajMaxPocetHlasovOkrsok();
 	Okrsok * dajOkrsokMaxPrefHlasyPocet();
 	const string& dajMeno();
 
@@ -28,5 +29,5 @@ private:
 	int prefHlasyPocet_;
 	int maxPocetHlasovOkrsok_;
 	Okrsok* okrsok_;
-	DS::TableSorted<Okres*, int>* okresHlasy_;
+	DS::TableSorted<Okres*, int*>* okresHlasy_;
 };

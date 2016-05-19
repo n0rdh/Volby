@@ -5,6 +5,8 @@
 #include "CmpStrany.h"
 #include "CmpOkrskyOkres.h"
 
+#include <iomanip>
+
 using namespace std;
 using namespace DS;
 
@@ -47,29 +49,61 @@ Aplikacia::~Aplikacia()
 
 void Aplikacia::nacitajSubory()
 {
-	cout << "Nacitavanie vysledkov pre okrsky..." << endl;
+	cout << "Nacitavanie vysledkov pre okrsky...";
 	nacitajVysledkyPreOkrsky();
+	cout << endl;
 	cout << "Nacitavanie vysledkov o zapisanych volicoch..." << endl;
 	nacitajZapisanychVolicov();
-	cout << "Nacitavanie vysledkov o preferencnych hlasoch..." << endl;
+	cout << endl;
+	cout << "Nacitanie vysledkov pre kandidatov..." << endl;
 	nacitajPreferenceHlasy();
 	poNacitani();
 }
 
 void Aplikacia::nacitajVysledkyPreOkrsky()
 {
+	int rozsahyKandidatov[23][2] = {
+		{ 0, 149 },
+		{ 150, 298 },
+		{ 299, 447 },
+		{ 448, 480 },
+		{ 481, 579 },
+		{ 578, 728 },
+		{ 729, 769 },
+		{ 770, 859 },
+		{ 860, 969 },
+		{ 970, 1015 },
+		{ 1016, 1163 },
+		{ 1164, 1312 },
+		{ 1313, 1461 },
+		{ 1462, 1600 },
+		{ 1601, 1749 },
+		{ 1750, 1898 },
+		{ 1899, 2047 },
+		{ 2048, 2196 },
+		{ 2197, 2344 },
+		{ 2345, 2493 },
+		{ 2494, 2642 },
+		{ 2643, 2743 },
+		{ 2744, 2892 }
+	};
+
 	Parser parser("VyslPSOkrskySemColSep.txt");
 	Okrsok* okrsok;
 	Okres* okres;
+	double percenta(0.0), riadok(0.0);
 
 	for (auto i(0); i < Parser::POCET_POL_STRAN; i++)
 	{
-		Strana* strana(new Strana(parser.dajNazovStrany(i)));
+		Strana* strana(new Strana(parser.dajNazovStrany(i), rozsahyKandidatov[i][0],rozsahyKandidatov[i][1]));
 		strany_->insert(i + 1, strana);
 	}
 
 	while (parser.nacitajDalsiZaznam(';'))
 	{
+		//riadok++;
+		//percenta = (riadok / 6000) * 100;
+		//cout << "  Nacitavanie vysledkov pre okrsky" << setw(5) << (int)percenta + 1 << " %\r";
 		if (!okresy_->tryFind(parser.dajStrDataNaPozicii(OKRES_POZ), okres))
 		{
 			okres = new Okres(parser.dajStrDataNaPozicii(OBVOD_POZ),
@@ -97,9 +131,12 @@ void Aplikacia::nacitajVysledkyPreOkrsky()
 void Aplikacia::nacitajZapisanychVolicov()
 {
 	Parser parser("ZapVoliciOkrskySemColSep.txt");
-
+	double percenta(0.0), riadok(0.0);
 	for (auto item : *okrsky_)
 	{
+		//riadok++;
+		//percenta = (riadok / 6000) * 100;
+		//cout << "  Nacitavanie vysledkov o zapisanych volicoch" << setw(5) << (int)percenta + 1 << " %\r";
 		parser.nacitajDalsiZaznam(';');
 		item->getData()->nastavPocetZapVolicov(parser.dajIntDataNaPozicii(2));
 	}
@@ -108,32 +145,27 @@ void Aplikacia::nacitajZapisanychVolicov()
 void Aplikacia::nacitajPreferenceHlasy()
 {
 	Parser parser("VyslPrednHlasOkrskyCSV.csv");
-
-	//#####################################################################
-	std::vector<std::string> partyCandCounts;
-
-	partyCandCounts.reserve(23);
-	naci("poctyKandidatov.txt", &partyCandCounts);
-
-	int prevUpperBound(0);
-
-	for (auto i(0); i < partyCandCounts.size(); i++)
+	double percenta(0.0), riadok(0.0);
+	for (auto prvokOkrsky : *okrsky_)
 	{
-		const int newUpperIndex(std::stoi(partyCandCounts[i]));
-
-		partyCandIndices_->insert(i,
-			new std::pair<int, int>(prevUpperBound, prevUpperBound + newUpperIndex - 1));
-		prevUpperBound += newUpperIndex;
-	}
-	//#####################################################################
-
-	for (auto item : *okrsky_)
-	{
+		Okrsok * okrsok(prvokOkrsky->getData());
+		//riadok++;
+		//percenta = (riadok / 6000) * 100;
+		//cout << "  Nacitanie vysledkov o kandidatoh" << setw(5) << (int)percenta + 1 << " %\r";
 		parser.nacitajDalsiZaznam(',');
-		for (auto strana : *strany_)
+		for (auto prvokStrany : *strany_)
 		{
-			item->getData()->pridajPrefHlasy(strana->getData(),
-				parser.dajIntDataNaPozicii(4 + (strana->getKey() - 1)));
+			Strana* strana(prvokStrany->getData());
+			int sumaPrefHlasovStrany(0);
+
+			for (int i(strana->dajZaciatokKandidati()); i <= strana->dajKoniecKandidati(); i++)
+			{
+				int pocetHlasov(parser.dajIntDataNaPozicii(4 + i));
+				strana->pridajKandidatovyPrefHlasy(i, okrsok, pocetHlasov);
+				sumaPrefHlasovStrany += pocetHlasov;
+			}
+
+			okrsok->pridajPrefHlasy(prvokStrany->getData(), sumaPrefHlasovStrany);
 		}
 	}
 }
@@ -224,7 +256,7 @@ void Aplikacia::vypisPolitickaStrana()
 	cout << "Zadajte cislo politickej strany:\n   >>> ";
 	int cisloStrany;
 	cin >> cisloStrany;
-	if (cisloStrany > 0 && cisloStrany < 27)
+	if (cisloStrany > 0 && cisloStrany < 24)
 	{
 		Strana* strana((*strany_)[cisloStrany]);
 		cout << "Politicka strana  " << strana->dajSkratku() << "\n  ";
@@ -261,7 +293,8 @@ void Aplikacia::vyhladajOkres()
 	string okres;
 	cin.ignore();
 	getline(cin, okres);
-	(*okresy_)[okres]->vypisStatistiku();								//   Dorob vynimku
+	//if (okresy_->tryFind(okres,))
+	(*okresy_)[okres]->vypisStatistiku();
 }
 
 int Aplikacia::spusti()
@@ -290,7 +323,7 @@ int Aplikacia::spusti()
 		case 5:
 			return 0;
 		default:
-			cout << "Nespravne tlacitko" << endl;
+			cout << "  Nespravna volba" << endl;
 			break;
 		}
 	}
@@ -311,13 +344,12 @@ void Aplikacia::volbaStranyAOkresu(int zorad)
 		system("cls");
 		cout << "Vyhladanie okresu" << endl;
 		cout << "------------------" << endl;
-		for (auto prvok : *okresy_) cout << "	" << prvok->getData()->dajNazov() << endl;
+		for (auto prvokOkresy : *okresy_) cout << "	" << prvokOkresy->getData()->dajNazov() << endl;
 		cout << "Vyberte Okres: \n   >>> ";
 		cin >> okres;
-		//strana->zoradKandidatovOkresPref();
+		strana->zoradKandidatovOkresPref((*okresy_)[okres]);
 	}
 	if (zorad == 3)	strana->zoradKandidatovSKPref();
-	strana->vypisKandidatov(zorad);
 	cout << endl;
 }
 
@@ -366,8 +398,8 @@ void Aplikacia::zoradOkrskyZapVolici()
 	okrsky_->sort(comparator);
 	for (auto okrsok : *okrsky_)
 	{
-		cout << "   " << okrsok->getData()->dajNazov() << "    >>>    "
-			<< okrsok->getData()->dajPocetZapVolici() << endl;
+		cout << "   " << okrsok->getData()->dajNazov();
+		cout << setw(20) << okrsok->getData()->dajPocetZapVolici() << endl;
 	}
 }
 
@@ -377,8 +409,8 @@ void Aplikacia::zoradOkrskyStranaRelVysledok(Strana * strana)
 	okrsky_->sort(comparator);
 	for (auto okrsok : *okrsky_)
 	{
-		cout << "   " << okrsok->getData()->dajNazov() << "    >>>    "
-			<< okrsok->getData()->dajStranaRelVysl(strana) << endl;
+		cout << "   " << okrsok->getData()->dajNazov();
+		cout << setw(20) << okrsok->getData()->dajStranaRelVysl(strana) << endl;
 	}
 }
 
@@ -388,8 +420,8 @@ void Aplikacia::zoradOkrskyStranaAbsVysledok(Strana * strana)
 	okrsky_->sort(comparator);
 	for (auto okrsok : *okrsky_)
 	{
-		cout << "   " << okrsok->getData()->dajNazov() << "    >>>    "
-			<< okrsok->getData()->dajStranaAbsVysl(strana) << endl;
+		cout << "   " << okrsok->getData()->dajNazov();
+		cout << setw(20) << okrsok->getData()->dajStranaAbsVysl(strana) << endl;
 	}
 }
 
@@ -399,8 +431,8 @@ void Aplikacia::zoradOkrskyPrefHlasy(Strana * strana)
 	okrsky_->sort(comparator);
 	for (auto okrsok : *okrsky_)
 	{
-		cout << "   " << okrsok->getData()->dajNazov() << "    >>>    "
-			<< okrsok->getData()->dajStranaPrefHlasy(strana) << endl;
+		cout << "   " << okrsok->getData()->dajNazov();
+		cout << setw(20) << okrsok->getData()->dajStranaPrefHlasy(strana) << endl;
 	}
 }
 

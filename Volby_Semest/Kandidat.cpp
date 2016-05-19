@@ -8,7 +8,7 @@ Kandidat::Kandidat(const string & meno)	:
 	prefHlasyPocet_(0),
 	maxPocetHlasovOkrsok_(0),
 	okrsok_(nullptr),
-	okresHlasy_(new TableSorted<Okres*, int>(functionCompare))
+	okresHlasy_(new TableSorted<Okres*, int*>(functionCompare))
 {
 }
 
@@ -17,7 +17,7 @@ Kandidat::Kandidat(const Kandidat& dalsi) :
 	prefHlasyPocet_(dalsi.prefHlasyPocet_),
 	maxPocetHlasovOkrsok_(dalsi.maxPocetHlasovOkrsok_),
 	okrsok_(dalsi.okrsok_),
-	okresHlasy_(new TableSorted<Okres*, int>(*dalsi.okresHlasy_))
+	okresHlasy_(new TableSorted<Okres*, int*>(*dalsi.okresHlasy_))
 {
 }
 
@@ -46,14 +46,28 @@ void Kandidat::pridajOkrsokPrefHlasy(Okrsok* okrsok, int pocetHlasov)
 		maxPocetHlasovOkrsok_ = pocetHlasov;
 	}
 	prefHlasyPocet_ += pocetHlasov;
+
+	int* hlasy;
+	Okres* okres(okrsok->dajOkres());
+	if (!okresHlasy_->tryFind(okres, hlasy))
+	{
+		hlasy = new int(0);
+		okresHlasy_->insert(okres, hlasy);
+	}
+	*hlasy += pocetHlasov;
 }
 
 int Kandidat::dajPrefHlasyOkres(Okres * okres)
 {
-	return (*okresHlasy_)[okres];
+	return *(*okresHlasy_)[okres];
 }
 
-int Kandidat::dajPrefHlasyPocet()
+int Kandidat::dajMaxPocetHlasovOkrsok()
+{
+	return maxPocetHlasovOkrsok_;
+}
+
+int Kandidat::dajPreferencneHlasyPocet()
 {
 	return prefHlasyPocet_;
 }

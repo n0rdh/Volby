@@ -24,12 +24,14 @@ public:
 	int dajIntDataNaPozicii(int index) const;
 
 	bool nacitajDalsiZaznam(char oddelovac);
+	std::string dajMenoKandidata(int index);
+
+	void nacitajSuborPoRiadkoch(const std::string& nazovSuboru, std::vector<std::string>* zoznam);
 
 	std::vector<std::string>* dajPrvkyRiadku() const;
 
 private:
 	static int prevedStrNaInt(const std::string& token);
-	void nacitajSuborPoRiadkoch(const std::string& nazovSuboru, std::vector<std::string>* zoznam);
 	std::vector<std::string>* rozdelRiadokNaCasti(const std::string& retazec, char oddelovac) const;
 
 	std::vector<std::string>* prvkyRiadku_;
