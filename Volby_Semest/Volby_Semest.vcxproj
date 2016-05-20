@@ -60,6 +60,10 @@
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Vysledok.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3FA04D52-F69E-4B23-8D0A-BCE595D69E64}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

@@ -60,7 +60,7 @@ namespace DS
 				const int parent((currIndex - 1) >> 1);
 				swapped = false;
 
-				if ((currIndex > 0) &&
+				if ((currIndex > 0) &&															
 					((comparator.compare(*(*list_)[currIndex], *(*list_)[parent])) > 0))
 				{
 					DSRoutines::swap<TableItem<K, T>*>((*list_)[currIndex], (*list_)[parent]);

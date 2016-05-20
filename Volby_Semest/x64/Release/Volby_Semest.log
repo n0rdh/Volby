@@ -1,7 +1,7 @@
-﻿  CmpStrany.cpp
+﻿  Aplikacia.cpp
   Generating code
-  10 of 1204 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+  11 of 1204 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+    17 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Volby_Semest.vcxproj -> C:\Users\Tomáš\Desktop\School\GitHub\Volby\x64\Release\Volby_Semest.exe

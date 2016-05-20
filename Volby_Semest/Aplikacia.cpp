@@ -293,7 +293,6 @@ void Aplikacia::vyhladajOkres()
 	string okres;
 	cin.ignore();
 	getline(cin, okres);
-	//if (okresy_->tryFind(okres,))
 	(*okresy_)[okres]->vypisStatistiku();
 }
 

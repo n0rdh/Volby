@@ -14,10 +14,10 @@ namespace DS
 			bool suppressDuplicateChecks = false);
 		TableUnsorted(const CompareFunction<K> compare, size_t capacity,
 			bool suppressDuplicateChecks = false);
-		TableUnsorted(const TableUnsorted<K, T>& dalsi);
+		TableUnsorted(const TableUnsorted<K, T>& other);
 
 		Structure* clone() const override;
-		virtual TableUnsorted<K, T>& operator=(const TableUnsorted<K, T>& dalsi);
+		virtual TableUnsorted<K, T>& operator=(const TableUnsorted<K, T>& other);
 
 		void insert(const K& key, const T& value) override;
 		T remove(const K& key) override;
@@ -45,10 +45,10 @@ namespace DS
 	}
 
 	template<typename K, typename T>
-	TableUnsorted<K, T>::TableUnsorted(const TableUnsorted<K, T>& dalsi) :
-		TableList<K, T>(dynamic_cast<List<TableItem<K, T>*>*>(dalsi.list_->clone()),
-			dalsi.compare_),
-		suppressDuplicateChecks_(dalsi.suppressDuplicateChecks_)
+	TableUnsorted<K, T>::TableUnsorted(const TableUnsorted<K, T>& other) :
+		TableList<K, T>(dynamic_cast<List<TableItem<K, T>*>*>(other.list_->clone()),
+			other.compare_),
+		suppressDuplicateChecks_(other.suppressDuplicateChecks_)
 	{
 	}
 
@@ -59,13 +59,13 @@ namespace DS
 	}
 
 	template<typename K, typename T>
-	TableUnsorted<K, T>& TableUnsorted<K, T>::operator=(const TableUnsorted<K, T>& dalsi)
+	TableUnsorted<K, T>& TableUnsorted<K, T>::operator=(const TableUnsorted<K, T>& other)
 	{
-		TableList<K, T>::operator=(dalsi);
+		TableList<K, T>::operator=(other);
 
-		if (this != &dalsi)
+		if (this != &other)
 		{
-			suppressDuplicateChecks_ = dalsi.suppressDuplicateChecks_;
+			suppressDuplicateChecks_ = other.suppressDuplicateChecks_;
 		}
 
 		return *this;
@@ -91,7 +91,7 @@ namespace DS
 
 		if (index == TableList<K, T>::NONEXISTENT_KEY)
 		{
-			throw invalid_argument("attempt to remove data at non-existent key");
+			throw std::invalid_argument("attempt to remove data at non-existent key");
 		}
 
 		const int lastIndex(static_cast<int>(list_->size() - 1));
