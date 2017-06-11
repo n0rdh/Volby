@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DS::Array&lt;T&gt;">
+    <Position X="10.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAIAAAQhAAAEAAAJAAAAgkAAAAAA=</HashCode>
+      <FileName>Array.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::ArrayList&lt;T&gt;">
+    <Position X="8.5" Y="13" Width="1.5" />
+    <NestedTypes>
+      <Class Name="DS::ArrayList&lt;T&gt;::ArrayListIterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ArrayList.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAIAAAiAABAAAAACIgAgABQQAFAAAAAACAiEAECAAA=</HashCode>
+      <FileName>ArrayList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::DSRoutines" Collapsed="true">
+    <Position X="25.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAQAAAAAAAAI=</HashCode>
+      <FileName>DSRoutines.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::Iterator&lt;T&gt;" Collapsed="true">
+    <Position X="27" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAIgAAAAAQAAAAQAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Iterator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::Iterable&lt;T&gt;">
+    <Position X="1.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Iterator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::StructureIterator&lt;T&gt;" Collapsed="true">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAIAQAAAAAAAAAAAAAgEAAAAAA=</HashCode>
+      <FileName>Iterator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::List&lt;T&gt;">
+    <Position X="4.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAACAABAAAAAiIIAAAAQQAEAAAAAAAAgEAECAAI=</HashCode>
+      <FileName>List.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::SortableTable&lt;K, T&gt;">
+    <Position X="5.75" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACAAAIAAAA=</HashCode>
+      <FileName>SortableTable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::Structure">
+    <Position X="4.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAEAAAAAAAAAAAgEAAAAAA=</HashCode>
+      <FileName>Structure.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::DataItem&lt;T&gt;">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEQAIAAAAAAABAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>StructureItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::TableItem&lt;K, T&gt;">
+    <Position X="7.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAABIAAAAAAACAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>StructureItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::Table&lt;K, T&gt;">
+    <Position X="1.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAACAABAAAAEAIAAQAASAAEABAAAAAIgEAAAAAA=</HashCode>
+      <FileName>Table.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::TableList&lt;K, T&gt;">
+    <Position X="0.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAgBCAABAAAAEAIAgAAASAAkAAAQAAAEgEBAAAAA=</HashCode>
+      <FileName>TableList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::TableSorted&lt;K, T&gt;">
+    <Position X="3.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAQAAAAgEAAAAAA=</HashCode>
+      <FileName>TableSorted.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::TableUnsorted&lt;K, T&gt;">
+    <Position X="5.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAABAAAAEAAAAAAAAAAAAAAAAAAAgEAAECAA=</HashCode>
+      <FileName>TableUnsorted.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::Vector">
+    <Position X="12.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIiAAAAAAAIgIAQxAAAEAAAIAAEBgEAAAAAA=</HashCode>
+      <FileName>Vector.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DS::Comparator&lt;K, T&gt;">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Comparator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Aplikacia" Collapsed="true">
+    <Position X="15.75" Y="6.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>hgABiACIEAAQAAAAAQAAAEDYAAAAAEGggoIgIQKAAAw=</HashCode>
+      <FileName>Aplikacia.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kandidat" Collapsed="true">
+    <Position X="22" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>QAAAAACAAAEAAAAABAAghAAAAAEAAAABQAIkAAAAAgA=</HashCode>
+      <FileName>Kandidat.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Okres" Collapsed="true">
+    <Position X="22.25" Y="7.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>BAAEiAEAAAAAAAAAAQAQgAAIEAAAAAAAgEIgIAAABhA=</HashCode>
+      <FileName>Okres.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Okrsok" Collapsed="true">
+    <Position X="21.5" Y="5.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACABAAAAQAAAiUABAAAARAAgAAAgAAYA0AA=</HashCode>
+      <FileName>Okrsok.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Strana" Collapsed="true">
+    <Position X="16.25" Y="9.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>ACggDAAAA1AAAAQLAEgAAACAIAAICAAAAAEkCAAAQhA=</HashCode>
+      <FileName>Strana.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vysledok" Collapsed="true">
+    <Position X="16.25" Y="8" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAkCAAAAAAAAABAEAAAAAACAAAAAABAAAAACAA=</HashCode>
+      <FileName>Vysledok.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpOkrskyApp">
+    <Position X="4.25" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>CmpOkrskyApp.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpOkrskyOkres">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAQAA=</HashCode>
+      <FileName>CmpOkrskyOkres.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpKandidatiAbecedne">
+    <Position X="10.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAQAA=</HashCode>
+      <FileName>CmpStrany.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpKandidatiOkresPrefHlasy">
+    <Position X="13.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>CmpStrany.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpKandidatiSKPrefHlasy">
+    <Position X="16.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCA=</HashCode>
+      <FileName>CmpStrany.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpStrany">
+    <Position X="18" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>CmpStrany.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpOkrskyZapVolici">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>CmpStrany.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpOkrskyStranaRelVysl">
+    <Position X="9" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAgAAAAAAAAQAA=</HashCode>
+      <FileName>CmpStrany.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpOkrskyStranaAbsRes">
+    <Position X="12" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAQBA=</HashCode>
+      <FileName>CmpStrany.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmpOkrskyStranaPrefHlasy">
+    <Position X="15" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAQAA=</HashCode>
+      <FileName>CmpStrany.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser" Collapsed="true">
+    <Position X="27" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgIAAEAABAIAwAAAQAAAAAAAAWBAAgAAAgAgCAAgA=</HashCode>
+      <FileName>Parser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Typedef Name="DS::byte" Collapsed="true">
+    <Position X="25.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Structure.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
